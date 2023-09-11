@@ -15,7 +15,7 @@ from pprint import pprint
 
 OPENAI_MODEL_NAMES = {"gpt-3.5-turbo", "gpt-4"}
 AWAIT_TIMEOUT: int = 120
-MAX_RETRIES: int = 2
+MAX_RETRIES: int = 1
 
 
 async def work(user_input, model: str, temperature: int, use_wikiagent: bool, persist_logs: bool):
@@ -70,7 +70,7 @@ async def work(user_input, model: str, temperature: int, use_wikiagent: bool, pe
     
 
 async def main(questions, args):
-    sem = asyncio.Semaphore(10)
+    sem = asyncio.Semaphore(1)
     
     async def safe_work(user_input, model: str, temperature: int, use_wikiagent: bool, persist_logs: bool):
         async with sem:
