@@ -245,6 +245,9 @@ class ActionRunner:
                                                                  callback_manager=callback_manager)
 
     async def run(self, goal: str, outputq):
+        print('xiaojiang debug sleep 60')
+        await asyncio.sleep(60)
+
         self.ialogger.set_goal(goal)
         try:
             with get_openai_callback() as cb:
